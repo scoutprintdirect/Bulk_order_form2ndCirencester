@@ -123,6 +123,7 @@
       <ul>
         <li>Adult (no name) &ndash; £26</li>
         <li>Adult (name added) &ndash; £28</li>
+        <li>Leader specials (scout name front, scout name &amp; image on back) &ndash; £28</li>
       </ul>
     </div>
     <div>
@@ -159,7 +160,10 @@ const ITEMS = {
   "Leader Hoodie - Alannah (Baloo)":       { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Baloo",  back: "Baloo name & image" },
   "Leader Hoodie - Dan (Woody)":           { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Woody",  back: "Woody name & image" }
 };
-const HV_STD = ["Small","Medium","Large","XL","2XL","3XL","4XL","5XL","6XL"];
+[["Phil (Akela)","Akela","Akela"],["Dave (Scout Leader)","Dave","Scout Leader"],["Jessie (Squirrel)","Squirrel","Squirrel"],["Sammy (Mouse)","Mouse","Mouse"],["Alannah (Baloo)","Baloo","Baloo"],["Dan (Woody)","Woody","Woody"]].forEach(l => {
+  ITEMS["Leader Zipped Hoodie - " + l[0]] = { noName: 28, withName: 28, sizes: ZIP_H, fixedName: l[1], back: l[2] + " name & image" };
+});
+const HV_STD =["Small","Medium","Large","XL","2XL","3XL","4XL","5XL","6XL"];
 const HV_ADULT = {
   "Lime Green": HV_STD.slice(0,6),
   "Orange": HV_STD,
