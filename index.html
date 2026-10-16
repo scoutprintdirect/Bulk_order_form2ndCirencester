@@ -125,6 +125,14 @@
         <li>Adult (name added) &ndash; £28</li>
       </ul>
     </div>
+    <div>
+      <h3>Hi-Vis (group logo printed)</h3>
+      <ul>
+        <li>Adult &ndash; £4.50</li>
+        <li>Kids (age 5-7, 8-10) &ndash; £2.50</li>
+        <li>Colours: Lime Green, Orange, Pink, Red, Royal Blue, Yellow</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -151,11 +159,27 @@ const ITEMS = {
   "Leader Hoodie - Alannah (Baloo)":       { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Baloo",  back: "Baloo name & image" },
   "Leader Hoodie - Dan (Woody)":           { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Woody",  back: "Woody name & image" }
 };
+const HV_STD = ["Small","Medium","Large","XL","2XL","3XL","4XL","5XL","6XL"];
+const HV_ADULT = {
+  "Lime Green": HV_STD.slice(0,6),
+  "Orange": HV_STD,
+  "Pink": HV_STD.slice(0,8),
+  "Red": HV_STD.slice(0,6),
+  "Royal Blue": ["Small","Medium","Large","2XL","3XL","4XL","5XL","6XL"],
+  "Yellow": HV_STD
+};
+Object.keys(HV_ADULT).forEach(c => {
+  ITEMS["Hi-Vis Adult - " + c] = { noName: 4.5, withName: 4.5, sizes: HV_ADULT[c], noNameField: true };
+});
+Object.keys(HV_ADULT).forEach(c => {
+  ITEMS["Hi-Vis Kids - " + c] = { noName: 2.5, withName: 2.5, sizes: ["Age 5-7","Age 8-10"], noNameField: true };
+});
 function applyFixedName(id) {
   const p = ITEMS[document.getElementById("item-" + id).value];
   const n = document.getElementById("name-" + id);
-  if (p.fixedName) { n.value = p.fixedName; n.readOnly = true; n.style.background = "#f3ebff"; }
-  else { if (n.readOnly) n.value = ""; n.readOnly = false; n.style.background = ""; }
+  if (p.noNameField) { n.value = ""; n.readOnly = true; n.style.background = "#eee"; n.placeholder = "n/a"; }
+  else if (p.fixedName) { n.value = p.fixedName; n.readOnly = true; n.style.background = "#f3ebff"; n.placeholder = "Leave blank for none"; }
+  else { if (n.readOnly) n.value = ""; n.readOnly = false; n.style.background = ""; n.placeholder = "Leave blank for none"; }
 }
 function sizeOptions(item) {
   return '<option value="">Select</option>' + ITEMS[item].sizes.map(s => `<option>${s}</option>`).join("");
