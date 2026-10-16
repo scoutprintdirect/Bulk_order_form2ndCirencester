@@ -115,7 +115,7 @@
         <li>Adult (name added) &ndash; £23</li>
         <li>Youth (no name) &ndash; £19</li>
         <li>Youth (name added) &ndash; £21</li>
-        <li>Leader specials (scout name front, image back) &ndash; £23</li>
+        <li>Leader specials (scout name front, scout name &amp; image on back) &ndash; £23</li>
       </ul>
     </div>
     <div>
@@ -144,12 +144,12 @@ const ITEMS = {
   "Adult Hoodie":   { noName: 21, withName: 23, sizes: ADULT_H },
   "Youth Hoodie":   { noName: 19, withName: 21, sizes: YOUTH_H },
   "Adult Zipped Hoodie": { noName: 26, withName: 28, sizes: ZIP_H },
-  "Leader Hoodie - Phil (Akela)":          { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Akela",  back: "Akela image" },
-  "Leader Hoodie - Dave (Scout Leader)":   { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Dave",   back: "Scout Leader image" },
-  "Leader Hoodie - Jessie (Squirrel)":     { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Squirrel", back: "Squirrel image" },
-  "Leader Hoodie - Sammy (Mouse)":         { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Mouse",  back: "Mouse image" },
-  "Leader Hoodie - Alannah (Baloo)":       { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Baloo",  back: "Baloo image" },
-  "Leader Hoodie - Dan (Woody)":           { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Woody",  back: "Woody image" }
+  "Leader Hoodie - Phil (Akela)":          { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Akela",  back: "Akela name & image" },
+  "Leader Hoodie - Dave (Scout Leader)":   { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Dave",   back: "Scout Leader name & image" },
+  "Leader Hoodie - Jessie (Squirrel)":     { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Squirrel", back: "Squirrel name & image" },
+  "Leader Hoodie - Sammy (Mouse)":         { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Mouse",  back: "Mouse name & image" },
+  "Leader Hoodie - Alannah (Baloo)":       { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Baloo",  back: "Baloo name & image" },
+  "Leader Hoodie - Dan (Woody)":           { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Woody",  back: "Woody name & image" }
 };
 function applyFixedName(id) {
   const p = ITEMS[document.getElementById("item-" + id).value];
