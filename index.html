@@ -106,6 +106,7 @@
         <li>Adult (name added) &ndash; £14</li>
         <li>Youth (no name) &ndash; £10</li>
         <li>Youth (name added) &ndash; £12</li>
+        <li>Leader specials (scout name front, scout name &amp; image on back) &ndash; £14</li>
       </ul>
     </div>
     <div>
@@ -162,6 +163,7 @@ const ITEMS = {
 };
 [["Phil (Akela)","Akela","Akela"],["Dave (Scout Leader)","Dave","Scout Leader"],["Jessie (Squirrel)","Squirrel","Squirrel"],["Sammy (Mouse)","Mouse","Mouse"],["Alannah (Baloo)","Baloo","Baloo"],["Dan (Woody)","Woody","Woody"]].forEach(l => {
   ITEMS["Leader Zipped Hoodie - " + l[0]] = { noName: 28, withName: 28, sizes: ZIP_H, fixedName: l[1], back: l[2] + " name & image" };
+  ITEMS["Leader T-Shirt - " + l[0]] = { noName: 14, withName: 14, sizes: ADULT_T, fixedName: l[1], back: l[2] + " name & image" };
 });
 const HV_STD =["Small","Medium","Large","XL","2XL","3XL","4XL","5XL","6XL"];
 const HV_ADULT = {
