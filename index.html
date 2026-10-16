@@ -115,6 +115,7 @@
         <li>Adult (name added) &ndash; £23</li>
         <li>Youth (no name) &ndash; £19</li>
         <li>Youth (name added) &ndash; £21</li>
+        <li>Leader specials (scout name front, image back) &ndash; £23</li>
       </ul>
     </div>
     <div>
@@ -142,8 +143,20 @@ const ITEMS = {
   "Youth T-Shirt":  { noName: 10, withName: 12, sizes: YOUTH_T },
   "Adult Hoodie":   { noName: 21, withName: 23, sizes: ADULT_H },
   "Youth Hoodie":   { noName: 19, withName: 21, sizes: YOUTH_H },
-  "Adult Zipped Hoodie": { noName: 26, withName: 28, sizes: ZIP_H }
+  "Adult Zipped Hoodie": { noName: 26, withName: 28, sizes: ZIP_H },
+  "Leader Hoodie - Phil (Akela)":          { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Akela",  back: "Akela image" },
+  "Leader Hoodie - Dave (Scout Leader)":   { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Dave",   back: "Scout Leader image" },
+  "Leader Hoodie - Jessie (Squirrel)":     { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Squirrel", back: "Squirrel image" },
+  "Leader Hoodie - Sammy (Mouse)":         { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Mouse",  back: "Mouse image" },
+  "Leader Hoodie - Alannah (Baloo)":       { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Baloo",  back: "Baloo image" },
+  "Leader Hoodie - Dan (Woody)":           { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Woody",  back: "Woody image" }
 };
+function applyFixedName(id) {
+  const p = ITEMS[document.getElementById("item-" + id).value];
+  const n = document.getElementById("name-" + id);
+  if (p.fixedName) { n.value = p.fixedName; n.readOnly = true; n.style.background = "#f3ebff"; }
+  else { if (n.readOnly) n.value = ""; n.readOnly = false; n.style.background = ""; }
+}
 function sizeOptions(item) {
   return '<option value="">Select</option>' + ITEMS[item].sizes.map(s => `<option>${s}</option>`).join("");
 }
@@ -174,6 +187,7 @@ function addRow() {
 function onItemChange(id) {
   const item = document.getElementById("item-" + id).value;
   document.getElementById("size-" + id).innerHTML = sizeOptions(item);
+  applyFixedName(id);
   recalcRow(id);
 }
 
@@ -215,8 +229,9 @@ function sendOrder() {
     if (!qty) return;
     if (!size) { lines.push("MISSING SIZE - " + document.getElementById("item-" + id).value); return; }
     const name = document.getElementById("name-" + id).value.trim();
+    const back = ITEMS[document.getElementById("item-" + id).value].back;
     lines.push(qty + " x " + document.getElementById("item-" + id).value + " | Size: " + size +
-      " | Name: " + (name || "none") + " | " + document.getElementById("line-" + id).textContent);
+      " | Name: " + (name || "none") + (back ? " | Back: " + back : "") + " | " + document.getElementById("line-" + id).textContent);
   });
   if (!lines.length) { alert("Please add at least one item."); return; }
   if (lines.some(l => l.startsWith("MISSING SIZE"))) { alert("Please choose a size for every item."); return; }
