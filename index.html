@@ -180,6 +180,10 @@ Object.keys(HV_ADULT).forEach(c => {
 Object.keys(HV_ADULT).forEach(c => {
   ITEMS["Hi-Vis Kids - " + c] = { noName: 2.5, withName: 2.5, sizes: ["Age 5-7","Age 8-10"], noNameField: true };
 });
+// Added later - kept at the END so order links already emailed keep working
+ITEMS["Leader Hoodie - Lucy (DETL)"]         = { noName: 23, withName: 23, sizes: ADULT_H, fixedName: "Lucy", back: "DETL" };
+ITEMS["Leader Zipped Hoodie - Lucy (DETL)"]  = { noName: 28, withName: 28, sizes: ZIP_H,   fixedName: "Lucy", back: "DETL" };
+ITEMS["Leader T-Shirt - Lucy (DETL)"]        = { noName: 14, withName: 14, sizes: ADULT_T, fixedName: "Lucy", back: "DETL" };
 function applyFixedName(id) {
   const p = ITEMS[document.getElementById("item-" + id).value];
   const n = document.getElementById("name-" + id);
@@ -194,7 +198,14 @@ function sizeOptions(item) {
 let rowCount = 0;
 
 function itemOptions() {
-  return Object.keys(ITEMS).map(n => `<option value="${n}">${n}</option>`).join("");
+  // Dropdown order only: show each Lucy item straight after Dan (Woody) in its leader group.
+  // Internal ITEMS order is unchanged so existing order links still work.
+  const keys = Object.keys(ITEMS).filter(k => k.indexOf("Lucy (DETL)") === -1);
+  Object.keys(ITEMS).filter(k => k.indexOf("Lucy (DETL)") !== -1).forEach(k => {
+    const anchor = keys.indexOf(k.replace("Lucy (DETL)", "Dan (Woody)"));
+    keys.splice(anchor + 1, 0, k);
+  });
+  return keys.map(n => `<option value="${n}">${n}</option>`).join("");
 }
 
 function addRow() {
